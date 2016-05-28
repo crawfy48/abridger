@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Abridger 1.0</title>
+    <style type="text/css">
+        *.omit {
+            background-color: lightgrey;
+        }
+        *.omit::-moz-selection {
+            background-color: black;
+            color: white;
+        }
+        *.omit::selection {
+            background-color: black;
+            color: white;
+        }
+        .content {
+            white-space: pre-wrap;
+        }
+    </style>
+    <script type="text/javascript" src="./lib/rangy-core.js"></script>
+    <script type="text/javascript" src="./lib/rangy-classapplier.js"></script>
+    <script type="text/javascript" src="./lib/rangy-textrange.js"></script>
+    <script type="text/javascript" src="./lib/abridger.js"></script>
+</head>
+
+<body>
+<div id="controlPanel">
+<button onClick="downloadHtml()">Download html</button>
+<button onClick="downloadText()">Download text</button>
+Upload content: <input type="file" onchange='uploadBook(this)' /><br/>
+<button id="modeButton" onClick="switchMode()"></button>
+<span id="viewPanel"><button onClick="expandAll()">Expand all</button><button onClick="collapseAll()">Collapse all</button></span>
+<span id="editPanel">Custom fragment description: <input type="text" id="fragDesc" value="..."><button onClick='document.getElementById("fragDesc").value="..."'>Set to [...]</button><input type="checkbox" id="wordWrapping" checked>Wrap words</span>
+</div>
+<div id="book" class="content" onmouseup="toggleOmit(event)">
+Here you can show and hide "abridged" parts of text and edit which part of text should be omitted. To see how it works click <span class="omit" title='to show or hide abridged part of text'>[here]</span>. To expand all hidden parts at once click "Expand all".
+<span class="omit" title='Omitted parts can include
+many lines of text
+just like this one.'>[...]</span><span class="omit" title='
+To hide all omitted parts click "Collapse all".'>[...]</span>
+
+To edit what should be omitted click "Switch to Edit Mode". Here you can mark the text to be omitted simply by highlighting it. Highlighting it again will reverse the effect.<span class="omit" title=' To disable wrapping the highlight around whole words uncheck the "Wrap words" checkbox.'>[...]</span> In Edit Mode you cannot hide omitted parts (they are all expanded), but you can see the text that will be displayed in their place by hovering mouse cursor over that part. <span class="omit" title='In Read Mode that works also in the other way, allowing you to see omitted text without expanding it.'>[...]</span>
+Default text to be displayed instead of omitted part is [...], but you can change it in the box above<span class="omit" title=' or set it back to [...] quickly by clicking "Set to [...]". Brackets are added automatically.'>[...]</span>. 
+
+To save the results click "Download html". That will save the contents with information about omitted parts<span class="omit" title=' and all other HTML tags.'>[...]</span> To download only text click "Download text" (remember to expand parts that should be in the text before downloading). To upload new content, select a file in the upload dialogue. <span class="omit" title='It can be a simple text file with no HTML formatting. Spaces and newlines should be preserved. If for large files (like books) Abridger slows down, divide them into chapters and load one chapter at a time.
+In case of encoding problems, change file encoding to UTF-8.'>[...]</span>
+
+This page uses <a href="https://github.com/timdown/rangy">rangy</a> code and is released under <a href="./LICENSE.txt">MIT license</a>.
+</div>
+</body>

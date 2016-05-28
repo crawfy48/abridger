@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Skracacz 1.0</title>
+    <style type="text/css">
+        *.omit {
+            background-color: lightgrey;
+        }
+        *.omit::-moz-selection {
+            background-color: black;
+            color: white;
+        }
+        *.omit::selection {
+            background-color: black;
+            color: white;
+        }
+        .content {
+            white-space: pre-wrap;
+        }
+    </style>
+    <script type="text/javascript" src="./lib/rangy-core.js"></script>
+    <script type="text/javascript" src="./lib/rangy-classapplier.js"></script>
+    <script type="text/javascript" src="./lib/rangy-textrange.js"></script>
+    <script type="text/javascript" src="./lib/abridger.js"></script>
+</head>
+
+<body>
+<div id="controlPanel">
+<button onClick="downloadHtml()">Pobierz html</button>
+<button onClick="downloadText()">Pobierz text</button>
+Załaduj zawartość: <input type="file" onchange='uploadBook(this)' /><br/>
+<button id="modeButton" onClick="switchMode()"></button>
+<span id="viewPanel"><button onClick="expandAll()">Pokaż wszystkie</button><button onClick="collapseAll()">Ukryj wszystkie</button></span>
+<span id="editPanel">Własny opis fragmentu: <input type="text" id="fragDesc" value="..."><button onClick='document.getElementById("fragDesc").value="..."'>Przywróć [...]</button><input type="checkbox" id="wordWrapping" checked>Oznaczaj całe słowa</span>
+</div>
+<div id="book" class="content" onmouseup="toggleOmit(event)">
+Dzięki tej stronie możesz chować i pokazywać "skrócone" części tekstu oraz decydować która część tekstu ma być pominięta. Aby zobaczyć jak to działa kliknij<span class="omit" title='aby pokazać lub ukryć skróconą część tekstu'>[tutaj]</span>. Aby pokazać wszystkie ukryte części kliknij "Pokaż wszystkie".
+<span class="omit" title='Pominięte części mogą zawierać
+wiele linii tekstu
+tak jak ta część.'>[...]</span><span class="omit" title='
+Aby ukryć wszystkie pominięte części kliknij "Ukryj wszystkie".'>[...]</span>
+
+Aby wybrać, który fragment tekstu ma być pominięty, kliknij "Przejdź do Trybu Edycji". W nim możesz wybierać część tekstu do pominięcia po prostu zaznaczając ją kursorem. Efekt można odwrócić ponownym zaznaczeniem.<span class="omit" title=' Aby wyłączyć domyślne zaznaczenie całych słów odznacz pole "Oznaczaj całe słowa".'>[...]</span> W Trybie Edycji nie można chować pominiętych części, ale można zobaczyć tekst zastępczy, który wyświetlałby się na ich miejscu, najeżdżając kursorem myszy nad te części. <span class="omit" title='W Trybie Czytania działa to także w drugą stronę, pozwalając zobaczyć pominięty tekst bez klikania go.'>[...]</span>
+Domyślny tekst zastępczy to [...], ale można go zmienić na własny w polu powyżej<span class="omit" title=' albo przywrócić [...] klikając "Przywróć [...]". Nawiasy są dodawane automatycznie.'>[...]</span>. 
+
+Aby zapisać wyniki kliknij "Pobierz html". Zapisany zostanie tekst z informacją o tym, które fragmenty są pominięte<span class="omit" title=' oraz informacją o pozostałych znacznikach html.'>[...]</span> Aby pobrać sam tekst kliknij "Pobierz tekst" (pamiętaj, aby przedtem schować fragmenty, które mają być pominięte, a pokazać pozostałe). Aby wrzucić nowy tekst, wybierz plik w polu "Załaduj zawartość". <span class="omit" title='Może być to zwykły plik tekstowy bez żadnego formatowania. Spacje i nowe linie powinny być wyświetlane poprawnie. Jeśli dla dużych plików (jak książki) Skracacz zwalnia, podziel je na rozdziały i ładuj jeden rozdział na raz.
+Jeśli polskie znaki nie wyświetlają się poprawnie, zmień kodowanie pliku na UTF-8.'>[...]</span>
+
+Strona używa kodu <a href="https://github.com/timdown/rangy">rangy</a> i działa pod <a href="./LICENSE.txt">licencją MIT</a>.
+</div>
+</body>
