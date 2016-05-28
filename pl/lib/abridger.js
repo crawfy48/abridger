@@ -13,13 +13,13 @@ function uploadBook(that) {
 }
 function downloadHtml() {
 	var a = document.body.appendChild(document.createElement("a"));
-	a.download = "text.html";
+	a.download = "tekst.html";
 	a.href = "data:text/html," + encodeURIComponent(document.getElementById("book").innerHTML);
 	a.click();
 }
 function downloadText() {
 	var a = document.body.appendChild(document.createElement("a"));
-	a.download = "text.txt";
+	a.download = "tekst.txt";
 	a.href = "data:text/plain," + encodeURIComponent(document.getElementById("book").textContent);
 	a.click();
 }
